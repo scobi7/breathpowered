@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Authorized</title>
+<body style="font-family:system-ui;max-width:720px;margin:40px auto;padding:0 16px;line-height:1.5">
+  <h1>Authorization Complete</h1>
+  <p id="status">Processing…</p>
+  <pre id="details" style="background:#f6f8fa;padding:12px;border-radius:8px;overflow:auto"></pre>
+  <script>
+    const p = new URLSearchParams(location.search);
+    const code = p.get("code");
+    const state = p.get("state");
+    if (code) {
+      document.getElementById("status").textContent = "Copy this authorization code into your token exchange script:";
+      document.getElementById("details").textContent = code + (state ? `\nstate=${state}` : "");
+    } else {
+      document.getElementById("status").textContent = "No authorization code found in the URL.";
+    }
+  </script>
+  <p style="margin-top:16px">You can close this tab after copying the code.</p>
+</body>
+</html>
